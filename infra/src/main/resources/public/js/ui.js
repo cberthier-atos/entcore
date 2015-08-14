@@ -350,12 +350,21 @@ ui.extendElement = {
 				$('.main').css({
 					'cursor': element.css('cursor')
 				});
+<<<<<<< HEAD
 				$(window).unbind('mousemove.drag touchmove.start');
 				$(window).on('mousemove.resize touchmove.resize', function(e){
 					element.unbind("click");
 					mouse = {
 						y: e.pageY || e.originalEvent.touches[0].pageY,
 						x: e.pageX || e.originalEvent.touches[0].pageX
+=======
+				$(window).unbind('mousemove.drag');
+				$(window).on('mousemove.resize', function(e){
+					element.unbind("click");
+					mouse = {
+						y: e.pageY,
+						x: e.pageX
+>>>>>>> ac441e4... [infra] rich text editor
 					};
 				});
 
@@ -423,21 +432,40 @@ ui.extendElement = {
 				};
 				resize();
 
+<<<<<<< HEAD
 				$(window).on('mouseup.resize touchleave.resize touchend.resize', function(){
+=======
+				$(window).on('mouseup.resize', function(){
+>>>>>>> ac441e4... [infra] rich text editor
 					interrupt = true;
 					setTimeout(function(){
 						element.data('resizing', false);
 						element.trigger('stopResize');
 					}, 100);
+<<<<<<< HEAD
 					$(window).unbind('mousemove.resize touchmove.resize');
 					$('body').unbind('mouseup.resize touchleave.resize touchend.resize');
+=======
+					$(window).unbind('mousemove.resize');
+					$('body').unbind('mouseup.resize');
+>>>>>>> ac441e4... [infra] rich text editor
 					$('.main').css({'cursor': ''})
 				});
 			}
 		});
 	},
 	draggable: function(element, params){
+<<<<<<< HEAD
 		element.on('touchstart mousedown', function(e){
+=======
+		if(element.length > 1){
+			element.each(function(index, item){
+				ui.extendElement.draggable($(item), params);
+			});
+		}
+
+		element.on('mousedown', function(e){
+>>>>>>> ac441e4... [infra] rich text editor
 			if(element.data('lock') === true || (e.target.tagName === 'TEXTAREA' && $(e.target).is(':focus'))){
 				return;
 			}
