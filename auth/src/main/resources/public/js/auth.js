@@ -218,6 +218,8 @@ function ActivationController($scope, template){
 		$scope.callBack = data.callBack;
 		$scope.cgu = data.cgu;
 		$scope.passwordRegex = data.passwordRegex;
+		if(data.phoneRegex)
+			$scope.phonePattern = new RegExp(data.phoneRegex)
 		$scope.mandatory = data.mandatory;
 		$scope.$apply('cgu');
 	});

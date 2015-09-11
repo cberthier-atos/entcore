@@ -153,6 +153,11 @@ function AdminDirectoryController($scope, $rootScope, $http, $route, template, m
     $scope.lang = lang
 	$scope.phonePattern = new RegExp("^(0|\\+33)\\s*[0-9]([-. ]?[0-9]{2}){4}$")
 
+	http().get('/auth/context').done(function(data){
+		if(data.phoneRegex)
+			$scope.phonePattern = new RegExp(data.phoneRegex)
+	});
+
 	$scope.loadingWrapper = function(name, fun, context){
 		if(typeof fun !== "function")
 			return

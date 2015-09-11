@@ -38,6 +38,13 @@ function DirectoryController($scope, route, date, template){
 	template.open('userActions', 'user-actions');
 	$scope.users = [];
 	$scope.lang = lang;
+	$scope.phonePattern = new RegExp("^(0|\\+33)\\s*[0-9]([-. ]?[0-9]{2}){4}$")
+
+	http().get('/auth/context').done(function(data){
+		if(data.phoneRegex)
+			$scope.phonePattern = new RegExp(data.phoneRegex)
+	});
+	
 	$scope.search = {
 		text: '',
 		field: '',

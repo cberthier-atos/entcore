@@ -101,6 +101,7 @@ public class AuthController extends BaseController {
 	private EventStore eventStore;
 	public enum AuthEvent { ACTIVATION, LOGIN, SMS }
 	private Pattern passwordPattern;
+	private Pattern phonePattern;
 	private String smsProvider;
 
 
@@ -121,6 +122,10 @@ public class AuthController extends BaseController {
 		protectedResource.setDataHandlerFactory(oauthDataFactory);
 		protectedResource.setAccessTokenFetcherProvider(accessTokenFetcherProvider);
 		passwordPattern = Pattern.compile(container.config().getString("passwordRegex", ".{8}.*"));
+		String phoneRegex = container.config().getString("phoneRegex");
+		phonePattern = phoneRegex != null ?
+				Pattern.compile(phoneRegex) :
+				Pattern.compile("^(0|\\+33)\\s*[0-9]([-. ]?[0-9]{2}){4}$");
 		ConcurrentSharedMap<Object, Object> server = vertx.sharedData().getMap("server");
 		if(server != null && server.get("smsProvider") != null)
 			smsProvider = (String) server.get("smsProvider");
@@ -224,6 +229,7 @@ public class AuthController extends BaseController {
 		context.putString("callBack", container.config().getObject("authenticationServer").getString("loginCallback"));
 		context.putBoolean("cgu", container.config().getBoolean("cgu", true));
 		context.putString("passwordRegex", passwordPattern.toString());
+		context.putString("phoneRegex", phonePattern.toString());
 		context.putObject("mandatory", container.config().getObject("mandatory", new JsonObject()));
 		renderJson(request, context);
 	}
@@ -501,7 +507,7 @@ public class AuthController extends BaseController {
 					(container.config().getObject("mandatory", new JsonObject()).getBoolean("phone", false)
 					  && (phone == null || phone.trim().isEmpty())) ||
 					(email != null && !email.trim().isEmpty() && !StringValidation.isEmail(email)) ||
-					(phone != null && !phone.trim().isEmpty() && !StringValidation.isPhone(phone))
+					(phone != null && !phone.trim().isEmpty() && !phonePattern.matcher(phone).matches())
 				) {
 					trace.info("Echec de l'activation du compte utilisateur " + login);
 					JsonObject error = new JsonObject()
