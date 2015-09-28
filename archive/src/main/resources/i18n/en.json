@@ -8,6 +8,7 @@
     "e404": "Not Found",
     "e408": "Request Time-out",
     "e500": "Internal Server Error",
+    "e504": "La demande a dépassé le delai imparti.",
     "export": "Download files",
     "export.class.admin.donotanswer": "This is an automatic message, please don't answer it.",
     "export.download": "here.",

@@ -8,6 +8,7 @@
     "e404": "A página solicitada não existe",
     "e408": "Tempo limite da solicitação",
     "e500": "Erro interno de servidor",
+    "e504": "La demande a dépassé le delai imparti.",
     "export": "Download os meus dados",
     "export.class.admin.donotanswer": "Esta mensagem foi gerada automaticamente , obrigado a não responder ",
     "export.download": "aqui.",

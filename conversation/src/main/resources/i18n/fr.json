@@ -29,6 +29,7 @@
     "folder.empty": "Ce dossier est vide",
     "folder.new.title": "Nouveau dossier",
     "folder.rename": "Renommer le dossier",
+    "forward.failed.quota": "Le transfert des pièces jointes du message à échoué car vous n'avez pas assez d'espace libre sur votre quota.",
     "from": "De",
     "from.to": "De/A",
     "group.AdminLocal": "Tous les administrateurs locaux",
@@ -101,6 +102,5 @@
     "used.space": "Espace utilisé",
     "user.folders": "Dossiers",
     "widget.empty": "Vous n'avez aucun message",
-    "widget.title": "messages",
-    "forward.failed.quota": "Le transfert des pièces jointes du message à échoué car vous n'avez pas assez d'espace libre sur votre quota."
+    "widget.title": "messages"
 }

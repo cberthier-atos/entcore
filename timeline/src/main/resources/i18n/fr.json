@@ -1,5 +1,4 @@
 {
-    "loading": "Chargement ...",
     "blog": "Blog",
     "comments.add": "Commenter",
     "comments.show": "Afficher les commentaires",
@@ -7,6 +6,7 @@
     "filters.all": "Tout",
     "filters.title": "Filtrer sur",
     "homeworks": "Cahier de textes",
+    "loading": "Chargement ...",
     "panel.themes": "Mes thèmes",
     "panel.title": "Personnalisation",
     "panel.widgets": "Mes widgets",
